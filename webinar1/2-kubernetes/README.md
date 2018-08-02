@@ -38,5 +38,113 @@ $ export token= ##########<Your Digital Ocean Personal Access Token>##########
 ```
 $ ls
 cluster.tf  destroy.sh  outputs.tf  provider.tf  script.sh
+```
+- Simply run the script.
+```
+./script.sh
+```
+
+- When your script execution get completed your kubectl will get configured to use the kubernetes cluster.
+```
+$ kubectl get nodes
+NAME                STATUS    ROLES     AGE       VERSION
+k8s-matser-node     Ready     master    2m        v1.10.0
+k8s-worker-node-1   Ready     <none>    1m        v1.10.0
+k8s-worker-node-2   Ready     <none>    57s       v1.10.0
+```
+
+### Create a Kubernetes Deployment and Service.
+
+- Lets create Nginx deployment.
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.7.9
+        ports:
+        - containerPort: 80
 
 ```
+
+- Deploy the deployment.
+```
+$ kubectl apply -f deployment.yaml
+```
+
+- List the deployments.
+```
+$ kubectl get deployments
+NAME               DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+nginx-deployment   3         3         3            3           29s
+```
+
+- List the pods.
+```
+$ kubectl get pod
+NAME                                READY     STATUS      RESTARTS   AGE
+nginx-deployment-75675f5897-nhwsp   1/1       Running     0          1m
+nginx-deployment-75675f5897-pxpl9   1/1       Running     0          1m
+nginx-deployment-75675f5897-xvf4f   1/1       Running     0          1m
+
+```
+
+- Create service for above deployment.
+```
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app: nginx
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+    nodePort: 30111
+```
+
+- Deploy the service.
+```
+$ kubectl apply -f service.yaml
+```
+
+- List the Services.
+```
+$ kubectl get service
+NAME            TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+kubernetes      ClusterIP   10.96.0.1       <none>        443/TCP        5h
+nginx-service   NodePort    10.100.98.213   <none>        80:30111/TCP   7s
+```
+
+You can access the Nginx application at 30111 port of Node/Master's IP address.
+
+
+### Clean Up.
+```
+$ kubectl delete deployment nginx-deployment
+$ kubectl delete service nginx-service
+```
+
+
+### Delete Cluster.
+```
+$ ./destroy.sh
+```
+
