@@ -194,3 +194,6 @@ $ docker container run cloudyuga/multistage:capp
 Hello From CLOUDYUGA
 ```
 
+### References
+- https://docs.docker.com/engine/reference/builder/
+- https://docs.docker.com/develop/develop-images/multistage-build/
