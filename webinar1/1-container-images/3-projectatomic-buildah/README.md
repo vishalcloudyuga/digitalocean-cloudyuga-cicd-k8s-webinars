@@ -25,8 +25,8 @@ Following instructions are for Ubuntu 16.04. If you are using different OS then 
   git clone https://github.com/projectatomic/buildah ./src/github.com/projectatomic/buildah
   cd ./src/github.com/projectatomic/buildah
   PATH=/usr/lib/go-1.8/bin:$PATH make runc all TAGS="apparmor seccomp"
-  cp buildah/src/github.com/opencontainers/runc/runc /usr/bin/.
-  apt install buildah
+  cp ~/buildah/src/github.com/opencontainers/runc/runc /usr/bin/.
+  apt install buildah -y
 ```
 
 - Configure the `/etc/containers/registries.conf`.
@@ -60,4 +60,21 @@ registries = []
 registries = []
 ```
 
+### Build the image.
 
+- Building the image using our github repository as context.
+```
+$ sudo buildah bud -t teamcloudyuga/rsvpapp:buildah github.com/vishalcloudyuga/rsvpapp 
+```
+
+- List the images.
+```
+$ sudo buildah images
+IMAGE ID             IMAGE NAME                                               CREATED AT             SIZE
+b0c552b8cf64         docker.io/teamcloudyuga/python:alpine                    Sep 30, 2016 04:39     95.3 MB
+8a6ee9908a2f         localhost/teamcloudyuga/rsvpapp:buildah                  Aug 2, 2018 07:53      114 MB
+```
+- Push the image to the Docker registry.
+```
+$ sudo buildah push --authfile ~/.docker/config.json teamcloudyuga/rsvpapp:buildah docker://teamcloudyuga/rsvpapp:buildah
+```
