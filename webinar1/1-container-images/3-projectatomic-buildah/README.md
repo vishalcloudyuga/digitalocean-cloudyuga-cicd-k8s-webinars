@@ -4,7 +4,7 @@ Buildah is a CLI tool developed by  `Projectatomic` for efficiently and quickly 
 
 ### Installation.
 
-Following instructions are for Ubuntu. If you are using different OS then please follow the [installation notes](https://github.com/projectatomic/buildah/blob/master/install.md)
+Following instructions are for Ubuntu 16.04. If you are using different OS then please follow the [installation notes](https://github.com/projectatomic/buildah/blob/master/install.md)
 
 - Install the required dependencies.
 ```
