@@ -10,7 +10,7 @@
 
 - Clone the Repository
 ``` 
-$ git clone https://github.com/vishalcloudyuga/digitalocean-cloudyuga-cicd-k8s-webinars.git
+$ git clone https://github.com/cloudyuga/digitalocean-cloudyuga-cicd-k8s-webinars.git
 ```
 
 - Go to the Terrafrom script directory.
