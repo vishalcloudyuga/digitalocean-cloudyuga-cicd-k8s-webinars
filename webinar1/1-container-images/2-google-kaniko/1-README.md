@@ -53,10 +53,6 @@ spec:
         mountPath: /tmp/rsvpapp
   restartPolicy: Never
   volumes:
-    - name: demo
-      hostPath:
-        path: /tmp/rsvpapp
-  volumes:
     - name: docker-config
       configMap:
         name: docker-config
