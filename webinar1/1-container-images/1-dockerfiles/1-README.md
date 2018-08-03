@@ -1,5 +1,5 @@
 ## Dockerfiles
-Docker builds the container images automatically by reading the instructions from a `Dockerfile`. A `Dockerfile` is a text file that consist of all the commands required to assemble a container image. Using `docker build` command we can create an automated build that executes several command-line instructions provided in `Dockerfile`. The `docker build` command builds an image from a `Dockerfile` and a `context`. The `context` is the set of files required to create a environment and run applications in container image.
+Docker builds the container images automatically by reading the instructions from a `Dockerfile`. A `Dockerfile` is a text file that consist of all the commands required to assemble a container image. Using `docker image build` command we can create an automated build that executes several command-line instructions provided in `Dockerfile`. The `docker image build` command builds an image from a `Dockerfile` and a `context`. The `context` is the set of files required to create a environment and run applications in container image.
 
 ## Demo
 
@@ -27,7 +27,8 @@ Dockerfile consist of the set of instructions required to build the image that w
 
 - Lets Build the Image.
 ```
-$ docker build -t teamcloudyuga/nginx .
+$ docker image build -t teamcloudyuga/nginx .
+
 Sending build context to Docker daemon  49.25MB
 Step 1/5 : FROM ubuntu:16.04
  ---> 7aa3602ab41e
@@ -72,7 +73,9 @@ Dockerfile  hello.c  README.md  SimpleDockerfile  start.sh
 
 - First Lets Build the image without multistage. For that take a look at `SimpleDockerfile`.
 ```
-cat SimpleDockerfile 
+$ cat SimpleDockerfile 
+
+
 FROM ubuntu AS buildstep
 RUN apt-get update && apt-get install -y build-essential gcc
 COPY hello.c /app/hello.c
@@ -86,7 +89,7 @@ CMD ["bash", "/app/start.sh"]
 
 - Build the Image.
 ```
-$ docker build -t cloudyuga/simple:capp -f ./SimpleDockerfile .
+$ docker image build -t cloudyuga/simple:capp -f ./SimpleDockerfile .
 ```
 
 - List the Images.
@@ -145,7 +148,7 @@ CMD ["bash", "/usr/src/app/start.sh"]
 
 - Build the image from above Dockerfile.
 ```
-$ docker build -t cloudyuga/multistage:capp .
+$ docker image build -t cloudyuga/multistage:capp .
 ```
 
 - List Docker image.
