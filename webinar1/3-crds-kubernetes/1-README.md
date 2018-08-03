@@ -13,152 +13,153 @@ $ vi crd.yaml
 apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
-  name: digitaloceans.stable.example.com
+  name: webinars.digitalocean.com
 spec:
-  group: stable.example.com
+  group: digitalocean.com
   version: v1
   scope: Namespaced
   names:
-    plural: digitaloceans
-    singular: digitalocean
-    kind: Digitalocean
+    plural: webinars
+    singular: webinar
+    kind: Webinar
     shortNames:
-    - do
-  
+    - wb
+   
 ```
 
 - Deploy this CRD.
 ```
-$ kubectl apply -f crd.yaml 
-customresourcedefinition.apiextensions.k8s.io/digitaloceans.stable.example.com created
-
+$ kubectl create -f crd.yaml 
+customresourcedefinition.apiextensions.k8s.io/webinars.digitalocean.com created
 ```
 
 - Get the list of CRD.
 ```
 $ kubectl get crd
-NAME                               CREATED AT
-digitaloceans.stable.example.com   2018-08-03T05:17:27Z
+NAME                        CREATED AT
+webinars.digitalocean.com   2018-08-03T06:08:39Z
+
 ```
 
 - After proxying the Kubernetes API locally using kubectl proxy we can discover the `stable.example.com` API group as follow.
 ```
 $ kubectl proxy &
-$ http 127.0.0.1:8001/apis/stable.example.com
+$ http 127.0.0.1:8001/apis/digitalocean.com
 
 HTTP/1.1 200 OK
-Content-Length: 244
+Content-Length: 238
 Content-Type: application/json
-Date: Fri, 03 Aug 2018 05:20:34 GMT
+Date: Fri, 03 Aug 2018 06:10:12 GMT
 
 {
     "apiVersion": "v1", 
     "kind": "APIGroup", 
-    "name": "stable.example.com", 
+    "name": "digitalocean.com", 
     "preferredVersion": {
-        "groupVersion": "stable.example.com/v1", 
+        "groupVersion": "digitalocean.com/v1", 
         "version": "v1"
     }, 
     "serverAddressByClientCIDRs": null, 
     "versions": [
         {
-            "groupVersion": "stable.example.com/v1", 
+            "groupVersion": "digitalocean.com/v1", 
             "version": "v1"
         }
     ]
 }
 
+
+
 ```
 
-Next, we will create an instance of the `digitalocean` CRD :
+Next, we will create an instance of the `webinar` CRD :
 
 - Configure the instance as follow.
 ```
-$ vim digitalocean.yaml
+$ vim webinar.yaml
 
-apiVersion: "stable.example.com/v1"
-kind: Digitalocean
+apiVersion: "digitalocean.com/v1"
+kind: Webinar
 metadata:
-  name: my-digitalocean-object1
+  name: webinar1
 spec:
-  name: digitalocean
+  name: webinar
   image: nginx
 
 ```
 
 - Deploy the instance of CRD.
 ```
-$  kubectl apply -f digitalocean.yaml 
-digitalocean.stable.example.com/my-digitalocean-object1 created
+$  kubectl apply -f webinar.yaml 
+webinar.digitalocean.com/webinar1 created
 ```
 
 - We can manage our Cloudyuga objects using `kubectl`. For example:
 ```
-$ kubectl get digitalocean
-NAME                      CREATED AT
-my-digitalocean-object1   24s
+$ kubectl get webinar
+NAME       CREATED AT
+webinar1   21s
 
 
-$ kubectl get do
-NAME                      CREATED AT
-my-digitalocean-object1   1m
+$ kubectl get wb
+NAME       CREATED AT
+webinar1   36s
 
 ```
 
 - After proxying the Kubernetes API locally using kubectl proxy we can discover the `digitalocean` CRD we defined in the previous step like so:
 ```
-$ http 127.0.0.1:8001/apis/stable.example.com/v1/namespaces/default/digitaloceans
+$ http 127.0.0.1:8001/apis/digitalocean.com/v1/namespaces/default/webinars
 
 HTTP/1.1 200 OK
-Content-Length: 916
+Content-Length: 826
 Content-Type: application/json
-Date: Fri, 03 Aug 2018 05:25:09 GMT
+Date: Fri, 03 Aug 2018 06:13:28 GMT
 
 {
-    "apiVersion": "stable.example.com/v1", 
+    "apiVersion": "digitalocean.com/v1", 
     "items": [
         {
-            "apiVersion": "stable.example.com/v1", 
-            "kind": "Digitalocean", 
+            "apiVersion": "digitalocean.com/v1", 
+            "kind": "Webinar", 
             "metadata": {
                 "annotations": {
-                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"stable.example.com/v1\",\"kind\":\"Digitalocean\",\"metadata\":{\"annotations\":{},\"name\":\"my-digitalocean-object1\",\"namespace\":\"default\"},\"spec\":{\"image\":\"nginx\",\"name\":\"digitalocean\"}}\n"
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"digitalocean.com/v1\",\"kind\":\"Webinar\",\"metadata\":{\"annotations\":{},\"name\":\"webinar1\",\"namespace\":\"default\"},\"spec\":{\"image\":\"nginx\",\"name\":\"webinar\"}}\n"
                 }, 
                 "clusterName": "", 
-                "creationTimestamp": "2018-08-03T05:23:27Z", 
+                "creationTimestamp": "2018-08-03T06:12:04Z", 
                 "generation": 1, 
-                "name": "my-digitalocean-object1", 
+                "name": "webinar1", 
                 "namespace": "default", 
-                "resourceVersion": "31807", 
-                "selfLink": "/apis/stable.example.com/v1/namespaces/default/digitaloceans/my-digitalocean-object1", 
-                "uid": "59c26432-96dd-11e8-b522-0800272c1dad"
+                "resourceVersion": "35024", 
+                "selfLink": "/apis/digitalocean.com/v1/namespaces/default/webinars/webinar1", 
+                "uid": "247d17ec-96e4-11e8-b522-0800272c1dad"
             }, 
             "spec": {
                 "image": "nginx", 
-                "name": "digitalocean"
+                "name": "webinar"
             }
         }
     ], 
-    "kind": "DigitaloceanList", 
+    "kind": "WebinarList", 
     "metadata": {
         "continue": "", 
-        "resourceVersion": "31918", 
-        "selfLink": "/apis/stable.example.com/v1/namespaces/default/digitaloceans"
+        "resourceVersion": "35115", 
+        "selfLink": "/apis/digitalocean.com/v1/namespaces/default/webinars"
     }
 }
-
 
 ```
 ## Delete a Custom Resource Definition.
 
 - Delete CRD instance.
 ```
-$ kubectl delete digitalocean --all
+$ kubectl delete webinar --all
 ```
 
 - Delete the  CRD.
 ```
-$ kubectl delete crd digitaloceans.stable.example.com
+$ kubectl delete crd webinars.digitalocean.com
 ```
 
 ### References
