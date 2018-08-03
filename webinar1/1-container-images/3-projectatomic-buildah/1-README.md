@@ -64,7 +64,7 @@ registries = []
 
 - Building the image using our github repository as context.
 ```
-$ sudo buildah bud -t teamcloudyuga/rsvpapp:buildah github.com/vishalcloudyuga/rsvpapp 
+$ sudo buildah bud -t teamcloudyuga/rsvpapp:buildah github.com/cloudyuga/rsvpapp 
 ```
 
 - List the images.
@@ -79,5 +79,16 @@ b0c552b8cf64         docker.io/teamcloudyuga/python:alpine                    Se
 $ sudo buildah push --authfile ~/.docker/config.json teamcloudyuga/rsvpapp:buildah docker://teamcloudyuga/rsvpapp:buildah
 ```
 
+- Push the image to Docker Daemon.
+```
+$ sudo buildah push --authfile ~/.docker/config.json teamcloudyuga/rsvpapp:buildah docker-daemon:teamcloudyuga/rsvpapp:buildah
+```
+
+- List the Docker images.
+```
+$ docker image ls
+REPOSITORY              TAG                 IMAGE ID            CREATED             SIZE
+teamcloudyuga/rsvpapp   buildah             ade4238b7a80        13 minutes ago      108MB
+```
 ### Reference
 - https://github.com/projectatomic/buildah
