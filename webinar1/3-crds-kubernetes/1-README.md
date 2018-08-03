@@ -41,7 +41,7 @@ webinars.digitalocean.com   2018-08-03T06:08:39Z
 
 ```
 
-- After proxying the Kubernetes API locally using kubectl proxy we can discover the `stable.example.com` API group as follow.
+- After proxying the Kubernetes API locally using kubectl proxy we can discover the `digitalocean.com` API group as follow.
 ```
 $ kubectl proxy &
 $ http 127.0.0.1:8001/apis/digitalocean.com
@@ -107,7 +107,7 @@ webinar1   36s
 
 ```
 
-- After proxying the Kubernetes API locally using kubectl proxy we can discover the `digitalocean` CRD we defined in the previous step like so:
+- After proxying the Kubernetes API locally using kubectl proxy we can discover the `webinars` CRD we defined in the previous step like so:
 ```
 $ http 127.0.0.1:8001/apis/digitalocean.com/v1/namespaces/default/webinars
 
