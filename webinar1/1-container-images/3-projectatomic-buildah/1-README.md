@@ -76,7 +76,7 @@ EOF
 
 - Building the image using our github repository as context.
 ```
-$ sudo buildah bud -t teamcloudyuga/rsvpapp:buildah github.com/cloudyuga/rsvpapp 
+$ sudo buildah build-using-dockerfile -t teamcloudyuga/rsvpapp:buildah github.com/cloudyuga/rsvpapp 
 ```
 
 - List the images.
@@ -94,6 +94,7 @@ $ curl -fsSL get.docker.com | sh
 
 $ docker login -u USERNAME -p PASSWORD
 ```
+
 - Push the image to the Docker registry 
 ```
 $ sudo buildah push --authfile ~/.docker/config.json teamcloudyuga/rsvpapp:buildah docker://teamcloudyuga/rsvpapp:buildah
@@ -101,7 +102,7 @@ $ sudo buildah push --authfile ~/.docker/config.json teamcloudyuga/rsvpapp:build
 
 - Push the image to Docker Daemon.
 ```
-$ sudo buildah push --authfile ~/.docker/config.json teamcloudyuga/rsvpapp:buildah docker-daemon:teamcloudyuga/rsvpapp:buildah
+$ sudo buildah push  teamcloudyuga/rsvpapp:buildah docker-daemon:teamcloudyuga/rsvpapp:buildah
 ```
 
 - List the Docker images.
