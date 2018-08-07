@@ -25,6 +25,7 @@ sudo touch /etc/apt/sources.list.d/kubernetes.list
 echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
 sudo apt-get update
 sudo apt-get install -y kubectl
+mkdir -p ~/.kube
 ```
 
 
@@ -43,7 +44,7 @@ $ cd digitalocean-cloudyuga-cicd-k8s-webinars/webinar1/2-kubernetes/1-Terrafrom/
 - Get a Fingerprint of Your SSH public key.(This SSH key must be linked with DigitalOcean)
 ```
 $ ssh-keygen -E md5 -lf ~/.ssh/id_rsa.pub | awk '{print $2}'
-2048 c6:94:77:7b:4f:69:5c:1e:43:74:2c:5a:1c:38:7f:eb /root/.ssh/id_rsa.pub (RSA)
+MD:c6:94:77:7b:4f:69:5c:1e:43:74:2c:5a:1c:38:7f:eb
 ```
 
 - Export a Fingerprint.
