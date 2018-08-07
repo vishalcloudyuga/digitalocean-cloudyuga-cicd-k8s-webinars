@@ -28,7 +28,7 @@ CMD ["nginx"]
 ```
 Dockerfile consist of the set of instructions required to build the image that will run Nginx.
 
-- Lets Build the Image.
+- Lets build the container image.
 ```
 $ docker image build -t teamcloudyuga/nginx .
 
@@ -74,7 +74,7 @@ Dockerfile  hello.c  README.md  SimpleDockerfile  start.sh
 
 #### Without Multistage
 
-- First Build the simple image without multistage. For that take a look at `SimpleDockerfile`.
+- First build the simple image without multistage. For that take a look at `SimpleDockerfile`.
 ```
 $ cat SimpleDockerfile 
 
@@ -90,19 +90,19 @@ CMD ["bash", "/app/start.sh"]
 
 ```
 
-- Build the Image.
+- Build the image.
 ```
 $ docker image build -t teamcloudyuga/simpleapp:capp -f ./SimpleDockerfile .
 ```
 
-- List the Images.
+- List the images.
 ```
 $ docker image ls
 REPOSITORY                TAG                 IMAGE ID            CREATED             SIZE
 teamcloudyuga/simpleapp   capp                e36f2e302250        4 days ago          329MB
 ```
 
-- Run the docker container from the above created image.
+- Run the Docker container from the above created image.
 ```
 $ docker container run teamcloudyuga/simpleapp:capp
 Hello From CLOUDYUGA
@@ -165,7 +165,7 @@ teamcloudyuga/simpleapp    capp                e36f2e302250        4 days ago   
 ```
 Here we can see that the size of image created using the multi-stage build is smaller than earlier image.
 
-- Lets run the docker container from the above created image.
+- Lets run the Docker container from the above created image.
 ```
 $ docker container run teamcloudyuga/multistage:capp
 Hello From CLOUDYUGA
