@@ -14,7 +14,17 @@ Following instructions are for Ubuntu 16.04. If you are using different OS then 
   apt-add-repository -y ppa:projectatomic/ppa
   apt update
   apt-get -y install bats btrfs-tools git libapparmor-dev libdevmapper-dev libglib2.0-dev libgpgme11-dev libostree-dev libseccomp-dev libselinux1-dev skopeo-containers go-md2man
-  apt-get -y install golang-1.8
+```
+
+- Install Go language.
+```
+$ sudo apt-get update
+$ sudo curl -O https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz
+$ sudo tar -xvf go1.8.linux-amd64.tar.gz
+$ sudo mv go /usr/local
+$ echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.profile
+$ source ~/.profile
+
 ```
 
 - Install the runc and Buildah.
