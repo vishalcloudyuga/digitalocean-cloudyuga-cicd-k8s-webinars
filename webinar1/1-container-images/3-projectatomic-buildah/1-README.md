@@ -24,7 +24,7 @@ Following instructions are for Ubuntu 16.04. If you are using different OS then 
   sudo mv go /usr/local
   echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.profile
   source ~/.profile
-
+  go version
 ```
 
 - Install the runc and Buildah.
@@ -34,14 +34,14 @@ Following instructions are for Ubuntu 16.04. If you are using different OS then 
   export GOPATH=`pwd`
   git clone https://github.com/projectatomic/buildah ./src/github.com/projectatomic/buildah
   cd ./src/github.com/projectatomic/buildah
-  PATH=/usr/lib/go-1.8/bin:$PATH make runc all TAGS="apparmor seccomp"
+  make runc all TAGS="apparmor seccomp"
   cp ~/buildah/src/github.com/opencontainers/runc/runc /usr/bin/.
   apt install buildah -y
 ```
 
 - Configure the `/etc/containers/registries.conf`.
 ```
-$ vi /etc/containers/registries.conf
+$ cat <<EOF >> /etc/containers/registries.conf
 
 # This is a system-wide configuration file used to
 # keep track of registries for various container backends.
@@ -68,6 +68,8 @@ registries = []
 # Docker only
 [registries.block]
 registries = []
+
+EOF
 ```
 
 ### Build the image.
@@ -84,7 +86,15 @@ IMAGE ID             IMAGE NAME                                               CR
 b0c552b8cf64         docker.io/teamcloudyuga/python:alpine                    Sep 30, 2016 04:39     95.3 MB
 8a6ee9908a2f         localhost/teamcloudyuga/rsvpapp:buildah                  Aug 2, 2018 07:53      114 MB
 ```
-- Push the image to the Docker registry.
+- [If you have installed docker and logged in to docker using CLI then you can skip this step].
+
+- Install Docker and Login.
+```
+$ curl -fsSL get.docker.com | sh
+
+$ docker login -u USERNAME -p PASSWORD
+```
+- Push the image to the Docker registry 
 ```
 $ sudo buildah push --authfile ~/.docker/config.json teamcloudyuga/rsvpapp:buildah docker://teamcloudyuga/rsvpapp:buildah
 ```
