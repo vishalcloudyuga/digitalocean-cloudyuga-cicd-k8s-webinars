@@ -77,9 +77,9 @@ $ ssh-keygen -E md5 -lf ~/.ssh/id_rsa.pub | awk '{print $2}'
 MD5:dd:d1:b7:0f:6d:30:c0:be:ed:ae:c7:b9:b8:4a:df:5e
 ```
 
-- Export a Fingerprint.
+- Export a Fingerprint shown in above output.
 ```
-$ export FINGERPRINT=c6:94:77:7b:4f:69:5c:1e:43:74:2c:5a:1c:38:7f:eb
+$ export FINGERPRINT=dd:d1:b7:0f:6d:30:c0:be:ed:ae:c7:b9:b8:4a:df:5e
 ```
 
 - Export your DO Personal Access Token.
