@@ -34,7 +34,7 @@ The key's randomart image is:
 
 ```
 
-- Link your SSH key to [DigitalOcean] (https://www.digitalocean.com/docs/droplets/how-to/add-ssh-keys/create-with-openssh/)
+- You must link above created SSH key to [DigitalOcean] For that follow these [guidelines](https://www.digitalocean.com/docs/droplets/how-to/add-ssh-keys/create-with-openssh/)
 
 ### Install Terraform
 - Download [Terraform binary](https://www.terraform.io/intro/getting-started/install.html) and add it to PATH.
