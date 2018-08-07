@@ -30,7 +30,7 @@ Dockerfile consist of the set of instructions required to build the image that w
 
 - Lets Build the Image.
 ```
-$ docker image build -t teamcloudyuga/nginx .
+$ docker image build -t nginx .
 
 Sending build context to Docker daemon  49.25MB
 Step 1/5 : FROM ubuntu:16.04
@@ -48,7 +48,7 @@ Step 5/5 : CMD ["nginx"]
  ---> Using cache
  ---> f545da818f47
 Successfully built f545da818f47
-Successfully tagged teamcloudyuga/nginx:latest
+Successfully tagged nginx:latest
 
 ```
 
@@ -57,7 +57,7 @@ Successfully tagged teamcloudyuga/nginx:latest
 $ docker image ls
 
 REPOSITORY            TAG                 IMAGE ID            CREATED             SIZE
-teamcloudyuga/nginx   latest              f545da818f47        3 minutes ago       171MB
+nginx                 latest              f545da818f47        3 minutes ago       171MB
 ubuntu                16.04               7aa3602ab41e        7 days ago    
 ```
 
@@ -92,19 +92,19 @@ CMD ["bash", "/app/start.sh"]
 
 - Build the Image.
 ```
-$ docker image build -t cloudyuga/simple:capp -f ./SimpleDockerfile .
+$ docker image build -t simpleapp:capp -f ./SimpleDockerfile .
 ```
 
 - List the Images.
 ```
 $ docker image ls
 REPOSITORY              TAG                 IMAGE ID            CREATED             SIZE
-cloudyuga/simple        capp                88880d3279c7        8 seconds ago       329MB
+simpleapp               capp                88880d3279c7        8 seconds ago       329MB
 ```
 
 - Run the docker container from the above created image.
 ```
-$ docker container run cloudyuga/simple:capp
+$ docker container run simpleapp:capp
 Hello From CLOUDYUGA
 ```
 
@@ -151,21 +151,21 @@ CMD ["bash", "/usr/src/app/start.sh"]
 
 - Build the image from above Dockerfile.
 ```
-$ docker image build -t cloudyuga/multistage:capp .
+$ docker image build -t multistage:capp .
 ```
 
 - List Docker image.
 ```
 $ docker image ls
 REPOSITORY              TAG                 IMAGE ID            CREATED             SIZE
-cloudyuga/multistage    capp                f19242572416        10 seconds ago      83.5MB
-cloudyuga/simple        capp                88880d3279c7        2 minutes ago       329MB
+multistage              capp                f19242572416        10 seconds ago      83.5MB
+simpleapp               capp                88880d3279c7        2 minutes ago       329MB
 ```
 You can see the reduced size of image.
 
 - Run the docker container from the above created image.
 ```
-$ docker container run cloudyuga/multistage:capp
+$ docker container run multistage:capp
 Hello From CLOUDYUGA
 ```
 
