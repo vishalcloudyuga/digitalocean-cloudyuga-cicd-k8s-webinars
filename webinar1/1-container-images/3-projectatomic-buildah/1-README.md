@@ -1,5 +1,5 @@
 ## Projectatomic-Buildah
-Buildah is a CLI tool developed by  `Projectatomic` for efficiently and quickly building Open Container Initiative (OCI) compliant images. Buildah can create an image, either from a working container or a Dockerfile. `Buildah` can perform image operation like build, list, push, tag. `Buildah`
+Buildah is a CLI tool developed by `Projectatomic` for efficiently and quickly building Open Container Initiative (OCI) compliant images. Buildah can create an image, either from a working container or a Dockerfile. `Buildah` can perform image operation like build, list, push, tag. `Buildah`
 
 
 ### Installation.
