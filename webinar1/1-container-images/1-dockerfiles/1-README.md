@@ -62,7 +62,7 @@ ubuntu                  16.04               7aa3602ab41e        11 days ago     
 ```
 
 ## Multi-Stage
-Multi stage build is the new feature introduced in the Docker 17.05, Which is very useful for optimizing the Dockerfile. It is very challeging task to write down the efficient Dockerfile with the lesser Docker image size. Each instruction in the Dockerfile creates the layer to the Docker image. Generally before this feature one Dockerfile was used for development (which contained everything needed to build your application),and another [reduced/modified] Dockerfile was used for production, which only contained your application and dependencies which were needed to run that application. So you have to maintain multiple Dockerfiles
+Multi stage build is the new feature introduced in the Docker 17.05, Which is very useful for optimizing the Dockerfile. It is very challeging task to write down the efficient Dockerfile with the lesser Docker image size. Each instruction in the Dockerfile creates the layer to the Docker image. Generally before this feature one Dockerfile was used for development (which contained everything needed to build your application),and another [reduced/modified] Dockerfile was used for production, which only contained your application and dependencies which were needed to run that application. 
 
 - Clone the git repository. 
 ```
@@ -74,7 +74,7 @@ Dockerfile  hello.c  README.md  SimpleDockerfile  start.sh
 
 #### Without Multistage
 
-- First Lets Build the image without multistage. For that take a look at `SimpleDockerfile`.
+- First Build the simple image without multistage. For that take a look at `SimpleDockerfile`.
 ```
 $ cat SimpleDockerfile 
 
@@ -163,9 +163,9 @@ teamcloudyuga/multistage   capp                44aec4c9e792        4 days ago   
 teamcloudyuga/simpleapp    capp                e36f2e302250        4 days ago          329MB
 
 ```
-You can see the reduced size of image.
+Here we can see that the size of image created using the multi-stage build is smaller than earlier image.
 
-- Run the docker container from the above created image.
+- Lets run the docker container from the above created image.
 ```
 $ docker container run teamcloudyuga/multistage:capp
 Hello From CLOUDYUGA
