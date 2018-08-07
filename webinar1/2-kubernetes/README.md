@@ -1,12 +1,34 @@
-### Prerequisites.
-- Required tools
-  - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-  - [terrafrom](https://www.terraform.io/intro/getting-started/install.html)
+## Prerequisites.
+
 
 - You Must have a DigitalOcean account. Personal Access Token must be generated on [DigitalOcean](https://www.digitalocean.com/docs/api/create-personal-access-token/).
 - You must have linked your SSH key to [DigitalOcean] (https://www.digitalocean.com/docs/droplets/how-to/add-ssh-keys/create-with-openssh/)
 - We are asuming your public keys and private keys are located at `~/.ssh/id_rsa.pub` and `~/.ssh/id_rsa`
-### Create Kubernetes cluster on DigitalOcean.
+
+## Tools
+
+### Install Terraform
+- Download [Terraform binary](https://www.terraform.io/intro/getting-started/install.html) and add it to PATH.
+```
+apt install unzip
+wget https://releases.hashicorp.com/terraform/0.11.7/terraform_0.11.7_linux_amd64.zip
+unzip terraform_0.11.7_linux_amd64.zip
+mv terraform /usr/bin/.
+terraform version
+```
+
+### Install `kubectl`
+```
+sudo apt-get update && sudo apt-get install -y apt-transport-https
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+sudo touch /etc/apt/sources.list.d/kubernetes.list 
+echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+sudo apt-get update
+sudo apt-get install -y kubectl
+```
+
+
+## Create Kubernetes cluster on DigitalOcean.
 
 - Clone the Repository
 ``` 
@@ -18,9 +40,9 @@ $ git clone https://github.com/cloudyuga/digitalocean-cloudyuga-cicd-k8s-webinar
 $ cd digitalocean-cloudyuga-cicd-k8s-webinars/webinar1/2-kubernetes/1-Terrafrom/
 ```
 
-- Get a Fingerprint of Your SSH public key.(SSH key must be linked with DO)
+- Get a Fingerprint of Your SSH public key.(This SSH key must be linked with DigitalOcean)
 ```
-$ ssh-keygen -lf ~/.ssh/id_rsa.pub
+$ ssh-keygen -E md5 -lf ~/.ssh/id_rsa.pub | awk '{print $2}'
 2048 c6:94:77:7b:4f:69:5c:1e:43:74:2c:5a:1c:38:7f:eb /root/.ssh/id_rsa.pub (RSA)
 ```
 
