@@ -1,7 +1,7 @@
 ## Prerequisites.
 
 
-- You Must have a DigitalOcean account. Personal Access Token must be generated on [DigitalOcean](https://www.digitalocean.com/docs/api/create-personal-access-token/).
+- You Must have a DigitalOcean account and `Personal Access Token` must be generated on [DigitalOcean](https://www.digitalocean.com/docs/api/create-personal-access-token/).
 
 
 ## Tools
