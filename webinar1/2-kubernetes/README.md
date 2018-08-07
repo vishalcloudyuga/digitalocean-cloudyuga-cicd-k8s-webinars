@@ -1,7 +1,7 @@
 ## Prerequisites.
 
 
-- You Must have a DigitalOcean account and `Personal Access Token` must be generated on [DigitalOcean](https://www.digitalocean.com/docs/api/create-personal-access-token/).
+- You Must have a DigitalOcean account and `Personal Access Token` must be generated at [DigitalOcean](https://www.digitalocean.com/docs/api/create-personal-access-token/).
 
 
 ## Tools
@@ -34,7 +34,7 @@ The key's randomart image is:
 
 ```
 
-- You must link above created SSH key to [DigitalOcean] For that follow these [guidelines](https://www.digitalocean.com/docs/droplets/how-to/add-ssh-keys/create-with-openssh/)
+- You must link above created SSH key to [DigitalOcean] Kindly follow these [guidelines](https://www.digitalocean.com/docs/droplets/how-to/add-ssh-keys/create-with-openssh/)
 
 ### Install Terraform
 - Download [Terraform binary](https://www.terraform.io/intro/getting-started/install.html) and add it to PATH.
