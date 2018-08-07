@@ -1,15 +1,15 @@
 
 ## Google-kaniko
 
-`Google-kaniko` is a tool to build container images from a Dockerfile, inside a `container` or `Kubernetes`.
-`Google-kaniko` need not to depend on a Docker daemon for building Image. It can execute each command from `Dockerfile` completely in userspace. This enables building container images in environments that can't easily or securely run a Docker daemon, such as a standard Kubernetes cluster. 
+`Google-kaniko` is a tool to build container images from a Dockerfile, inside a `container` or `Kubernetes Cluster`.
+`Google-kaniko` does not depend on a Docker daemon for building Image. It can execute each command from `Dockerfile` completely in userspace. This enables building container images in environments that can't easily or securely run a Docker daemon, such as a standard Kubernetes cluster. 
 
 The `kaniko executor image` is responsible for building an image from a Dockerfile and pushing it to a specific registry. Within the `kaniko executor image`, it extract the filesystem of the base image. then it execute the commands specified in Dockerfile one after one. After each command, it append a layer of changed files to the base image and update image metadata.
 
-For building the image you require the kaniko instance running and the context of image.
+For building the image you require the kaniko instance running and the context for building image.
 
 
-Lets build the image in the Kubernets environment.
+Lets build the image in the Kubernetes environment.
 
 - First login to your docker registry from CLI
 ```
@@ -63,7 +63,7 @@ spec:
 
 - Kindly update  `"--destination=docker.io/teamcloudyuga/rsvpapp:kaniko"` with your `DockerHub username`. Here my username is `teamcloudyuga`. 
 
-- Deploy the Pod.
+- Deploy the kaniko Pod.
 ```
 $ kubectl apply -f pod-kaniko.yaml 
 pod/kaniko created
@@ -84,7 +84,7 @@ $ kubectl get pod
 NAME      READY     STATUS      RESTARTS   AGE
 kaniko    0/1       Completed   0          2m
 ```
-Pod status is `complete` means pod has built the image and pushed it to registry.
+Pod status is `complete` means pod has built the image and pushed it to Docker registry.
 
 - Check the logs of pod.
 ```
@@ -110,7 +110,8 @@ time="2018-08-02T05:01:49Z" level=info msg="No files were changed, appending emp
 2018/08/02 05:01:56 index.docker.io/teamcloudyuga/rsvpapp:kaniko: digest: sha256:831b214cdb7f8231e55afbba40914402b6c915ef4a0a2b6cbfe9efb223522988 size: 1243
 ```
 
-- Lets pull the Docker image we recently build. This image image will be build and directly pushed to the registry. So we need to pull this image.
+- You can pull the Docker image kaniko has recently build.
+
 ```
 $  docker pull teamcloudyuga/rsvpapp:kaniko
 kaniko: Pulling from teamcloudyuga/rsvpapp
