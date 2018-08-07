@@ -18,12 +18,12 @@ Following instructions are for Ubuntu 16.04. If you are using different OS then 
 
 - Install Go language.
 ```
-$ sudo apt-get update
-$ sudo curl -O https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz
-$ sudo tar -xvf go1.8.linux-amd64.tar.gz
-$ sudo mv go /usr/local
-$ echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.profile
-$ source ~/.profile
+  sudo apt-get update
+  sudo curl -O https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz
+  sudo tar -xvf go1.8.linux-amd64.tar.gz
+  sudo mv go /usr/local
+  echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.profile
+  source ~/.profile
 
 ```
 
