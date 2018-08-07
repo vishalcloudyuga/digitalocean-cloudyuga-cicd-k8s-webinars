@@ -3,7 +3,10 @@ Docker builds the container images automatically by reading the instructions fro
 
 ## Demo
 
-
+- Install Docker.
+```
+$ curl -fsSL get.docker.com | sh
+```
 
 - Lets take a look at `Dockerfile`
 ```
